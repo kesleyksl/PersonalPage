@@ -1,0 +1,8 @@
+<div class="experiencia">
+    <h3 class="experiencia-titulo">{{experiencia.cargo}}</h3>
+    <p>{{experiencia.empresa}}</p>
+
+    <p class="periodo" *ngIf="experiencia.ano_termino">{{experiencia.mes_inicio}} de {{experiencia.ano_inicio}} - {{experiencia.mes_termino}} de {{experiencia.ano_termino}} </p>
+    <p class="periodo" *ngIf="!experiencia.ano_termino">{{experiencia.mes_inicio}} de {{experiencia.ano_inicio}} - Atual</p>
+    <p>{{experiencia.descricao}}</p>
+</div>

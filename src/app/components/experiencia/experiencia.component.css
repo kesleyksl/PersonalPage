@@ -1,0 +1,17 @@
+.experiencia{
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+.experiencia p {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.experiencia-titulo{
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: bolder;
+}
+
+.periodo{
+    color: #999999;
+}

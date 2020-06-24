@@ -1,0 +1,7 @@
+<div class="course">
+    <p>{{curso.nome}}, {{curso.instituicao}}</p>
+
+    <p *ngIf="curso.ano_conclusao">({{curso.mes_conclusao}} de {{curso.ano_conclusao}}) - {{curso.status}}</p>
+    <p *ngIf="!curso.ano_conclusao">{{curso.status}}</p>
+    
+</div>

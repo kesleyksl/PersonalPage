@@ -1,0 +1,21 @@
+.container-experiencias{
+    
+margin: 0 auto;
+margin-top: 25px;
+width: 60vw;
+
+}
+
+.titulo{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: white;
+}
+
+@media (max-width: 600px){
+    .container-experiencias{
+        padding-bottom: 50px;
+        width: 80vw;
+    }
+}

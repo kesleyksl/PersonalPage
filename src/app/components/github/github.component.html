@@ -1,0 +1,20 @@
+<div class="main-github">
+
+    <div class="user-repos">
+        <app-userrespos [userRepos]="userRepos"></app-userrespos>
+        
+    </div>
+    
+    <div class="repos"  >
+        <h1>Repositórios</h1>
+        <ng-container *ngFor="let repositorio of repositorios | async">
+            <app-repositorios [repositorio]="repositorio"></app-repositorios>
+           
+        </ng-container>
+    </div>
+</div>
+    
+    
+    
+
+

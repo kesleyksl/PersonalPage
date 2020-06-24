@@ -1,0 +1,65 @@
+.main-github{
+    display: flex;
+    justify-content: space-around;
+}
+.repos{
+    /* margin-left: 50px;
+    margin-right: 50px; */
+    margin-top: 10px;
+
+    /* flex-grow: 1; */
+  
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+.repos>h1{
+    margin: 15px 0  15px 0;
+}
+app-repositorios{
+    margin-bottom: 25px;
+    border-bottom: 1px solid #404040;
+}
+.user-repos{
+    margin-top: 30px;
+    width: 25%;
+}
+
+@media (max-width: 900px){
+    .user-repos{
+
+        width: 30%;
+      
+    }
+    .repos{
+        width: 50%;
+    }
+}
+@media (max-width: 700px){
+    .user-repos{
+
+        width: 35%; 
+      
+    }
+}
+@media (max-width: 600px){
+    .user-repos{
+
+        height: 35%;
+        width: 90%; 
+     
+      
+    }
+    .main-github{
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }
+    .repos{
+        margin-top: 30px;
+        width: 80%;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+  /* */

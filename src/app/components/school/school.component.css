@@ -1,0 +1,29 @@
+.titulo-curso{
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    font-weight: bolder;
+    color: white;
+}
+.titulo{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: white;
+}
+.container-cursos{
+
+margin: 0 auto;
+width: 60vw;
+
+
+}
+.container-cursos p {
+
+}
+@media (max-width: 600px){
+    .container-cursos{
+        padding-bottom: 50px;
+        width: 80vw;
+    }
+}
