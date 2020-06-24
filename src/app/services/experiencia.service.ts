@@ -8,7 +8,9 @@ import { Experiencia } from '../models/experiencia';
 })
 export class ExperienciaService {
 
-  private readonly baseUrl: string = 'http://localhost:3333'
+  // private readonly baseUrl: string = 'http://localhost:3333'
+  private readonly baseUrl: string = 'https://kesley-personal-backend.herokuapp.com'
+  
   constructor(private http: HttpClient) { }
 
   get(): Observable<Experiencia[]>{
