@@ -24,7 +24,7 @@ body{
     transition: background 0.7s;
   }
   .ripple:hover {
-    background: #606060 radial-gradient(circle, transparent 1%, #606060 1%) center/15000%;
+    background: #606060 radial-gradient(circle, transparent 1%, #707070 1%) center/15000%;
   }
   .ripple:active {
     background-color: #858585;
