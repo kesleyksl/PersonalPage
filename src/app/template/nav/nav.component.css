@@ -70,10 +70,6 @@ i{
 
 }
 
-.selected{
-    border-left: 3px solid #4dfcff;
-    color: #4dfcff ;
-}
 .selected i{
     color: #4dfcff ;
 }
@@ -83,47 +79,54 @@ i{
 .selected:hover i{
     color: #4dfcff;
 }
+.selected{
+    border-left: 3px solid #4dfcff;
+    color: #4dfcff ;
+                                
+}
 @media (max-width: 600px){
     .main-container{
-       flex-flow: column;
+        flex-flow: column;
         
     }
     .nav-container{
         width: 100vw;
-        height: 45px;
+        height: 65px;
         border-top: .5px solid #454545;
         border-right:none;
         flex-flow: row;
         
-
+        
         position: fixed;
         bottom: 0;
     }
     .ul-container{
         display: flex;
-       
+        
         flex-flow: row;
-
+        
         align-items: center;
         flex-grow: 1;
         
     }
     .ul-container li {
-
+        
         height: 100%;
-
+        
     }
-
+    
     .content{
-
+        
         margin-left: 0px;
-
-
+        
+        
     }
-
+    
     .selected{
         border-left: none;
         border-top: 3px solid #4dfcff;
+       background-color: transparent !important;
+        
     
     }
 }
