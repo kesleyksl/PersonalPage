@@ -29,6 +29,6 @@ body{
   .ripple:active {
     background-color: #858585;
     background-size: 100%;
-    transition: background .7s;
+    transition: background 0s;
   }
 
