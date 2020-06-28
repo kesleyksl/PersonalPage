@@ -1,9 +1,13 @@
 <h1 class="titulo">Formação Acadêmica e Complementar</h1>
 
-<div class="container-cursos">
-<h3 class="titulo-curso">Graduação</h3>
 
-    <div *ngFor="let curso of cursos | async">
+
+<div class="container-cursos" >
+    <h3 class="titulo-curso">Graduação</h3>
+    
+    <mat-spinner [strokeWidth]='3' [diameter]="30"  *ngIf="!cursos" mode="indeterminate">Carregando</mat-spinner>
+
+    <div *ngFor="let curso of cursos">
         
     <ng-container *ngIf="curso.tipo_curso == 'Graduação'">
         
@@ -14,7 +18,10 @@
 </div>
 
 <h3 class="titulo-curso">Ensino Médio Profissionalizante</h3>
-<div style="margin-bottom: 15px;"  *ngFor="let curso of cursos | async">
+<mat-spinner [strokeWidth]='3' [diameter]="30" *ngIf="!cursos" mode="indeterminate"></mat-spinner>
+
+
+<div style="margin-bottom: 15px;"  *ngFor="let curso of cursos">
     
     
     <ng-container *ngIf="curso.tipo_curso == 'Ensino Médio Profissionalizante'">
@@ -26,7 +33,9 @@
 
 
 <h3 class="titulo-curso">Cursos Complementares</h3>
-<div  *ngFor="let curso of cursos | async">
+<mat-spinner [strokeWidth]='3' [diameter]="30" *ngIf="!cursos" mode="indeterminate"></mat-spinner>
+
+<div  *ngFor="let curso of cursos">
     
     <ng-container *ngIf="curso.tipo_curso == 'Cursos Complementares'">
         

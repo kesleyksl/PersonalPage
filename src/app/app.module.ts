@@ -13,6 +13,8 @@ import { GithubComponent } from './components/github/github.component';
 import { CursoComponent } from './components/curso/curso.component';
 import { ProfessionalComponent } from './components/professional/professional.component';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ExperienciaComponent } from './components/experiencia/experiencia.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

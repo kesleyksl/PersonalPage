@@ -22,6 +22,9 @@
 </div>
 
 <div *ngIf="!userRepos">
-    <h1>Carregando...</h1>
+    <h1>Carregando...
+    <mat-spinner [strokeWidth]='3' [diameter]="30"   mode="indeterminate">Carregando</mat-spinner>
+
+    </h1>
 
 </div>

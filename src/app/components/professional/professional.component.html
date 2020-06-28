@@ -1,5 +1,6 @@
 <h1 class="titulo">Experiências</h1>
 <div class="container-experiencias">
+    <mat-spinner [strokeWidth]='3' [diameter]="30" *ngIf="!experiencias"   mode="indeterminate"></mat-spinner>
 
-    <app-experiencia *ngFor="let experiencia of experiencias | async" [experiencia]="experiencia"></app-experiencia>
+    <app-experiencia *ngFor="let experiencia of experiencias" [experiencia]="experiencia"></app-experiencia>
 </div>

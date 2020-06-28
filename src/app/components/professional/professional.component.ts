@@ -11,12 +11,17 @@ import { NavService } from 'src/app/services/nav.service';
 })
 export class ProfessionalComponent implements OnInit {
 
-  public experiencias: Observable<Experiencia[]> = this.experienciaService.get();
+  public experiencias: Experiencia[] // Observable<Experiencia[]> = this.experienciaService.get();
   constructor(private experienciaService: ExperienciaService, private navService: NavService) { 
     navService.selectedOption = 'professional'
   }
 
   ngOnInit(): void {
+    this.experienciaService.get().subscribe(
+      (experiencias)=>{
+        this.experiencias = experiencias;
+      }
+    )
   }
 
 }
