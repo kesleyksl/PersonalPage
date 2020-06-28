@@ -4,12 +4,12 @@ import{tap} from 'rxjs/operators'
 import { UserRepos } from '../models/user-repos';
 import { HttpClient } from '@angular/common/http';
 import { Repositorios } from '../models/repositorios';
-
+import {environment} from '../../environments/environment'
 @Injectable({
   providedIn: 'root'
 })
 export class ReposService {
-  private readonly baseUrl: string = 'https://api.github.com'
+  private readonly baseUrl: string = environment.gitUrl;
   private repoLoaded: boolean = false;
   private reposSubject$: BehaviorSubject<Repositorios[]> = new BehaviorSubject<Repositorios[]>(null);
 

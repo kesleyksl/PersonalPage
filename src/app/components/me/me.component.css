@@ -45,7 +45,9 @@ justify-content: space-around;
 .developer p{
   background-color: transparent;
 }
-
+.descriptions{
+  width: 50%;
+}
 
 @media (max-width: 600px){
 

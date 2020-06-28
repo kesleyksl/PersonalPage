@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CursoService } from 'src/app/services/curso.service';
 import { Curso } from 'src/app/models/curso';
-import { Observable } from 'rxjs';
+
 import { NavService } from 'src/app/services/nav.service';
 
 @Component({
