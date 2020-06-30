@@ -3,6 +3,8 @@ import { ReposService } from 'src/app/services/repos.service';
 import { NavService } from 'src/app/services/nav.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-me',
@@ -11,12 +13,14 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class MeComponent implements OnInit {
 
+  private subject$: Subject<any> = new Subject()
   public usuario: Usuario = {
     email: '',
-    password: '',
+
     name: '',
     description: '',
     profession: '',
+    token: ''
   }
 
   constructor(private usuarioService: UsuarioService, private navService: NavService) {
@@ -28,7 +32,11 @@ export class MeComponent implements OnInit {
 
    ngOnInit(): void {
     
-    this.usuarioService.get().subscribe(
+    this.usuarioService.get()
+    .pipe(
+      takeUntil(this.subject$)
+    )
+    .subscribe(
       (users)=>{
         this.usuario = users[0];
       }
@@ -36,6 +44,6 @@ export class MeComponent implements OnInit {
   }
 
   ngOnDestroy() {
-
+    this.subject$.next();
   }
 }

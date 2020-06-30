@@ -5,6 +5,7 @@ import { SchoolComponent } from './components/school/school.component';
 import { RepositoriosComponent } from './components/repositorios/repositorios.component';
 import { GithubComponent } from './components/github/github.component';
 import { ProfessionalComponent } from './components/professional/professional.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [{
@@ -19,6 +20,9 @@ const routes: Routes = [{
 },{
   path: "Professional",
   component: ProfessionalComponent
+},{
+  path: "Login",
+  component: LoginComponent
 }];
 
 @NgModule({
