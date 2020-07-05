@@ -3,6 +3,7 @@ import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { NavService } from 'src/app/services/nav.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,13 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required]],
 
   });
-  constructor(private fb: FormBuilder, private loginService: LoginService, private route: Router) { }
+  constructor(private fb: FormBuilder, 
+              private loginService: LoginService, 
+              private route: Router,
+               private navService: NavService) { 
+
+                navService.selectedOption = 'Login'
+               }
 
   ngOnInit(): void {
   }

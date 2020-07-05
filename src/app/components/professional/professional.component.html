@@ -2,5 +2,7 @@
 <div class="container-experiencias">
     <mat-spinner [strokeWidth]='3' [diameter]="30" *ngIf="!experiencias"   mode="indeterminate"></mat-spinner>
 
-    <app-experiencia *ngFor="let experiencia of experiencias" [experiencia]="experiencia"></app-experiencia>
+    <app-experiencia *ngFor="let experiencia of experiencias" [experiencia]="experiencia" (experienciaEdit)="atualizaLista($event)"></app-experiencia>
+
+
 </div>

@@ -1,4 +1,5 @@
 export interface Experiencia {
+    _id?: string,
     cargo: string,
        
     empresa: string,

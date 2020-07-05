@@ -1,8 +1,105 @@
-<div class="experiencia">
-    <h3 class="experiencia-titulo">{{experiencia.cargo}}</h3>
+<div class="experiencia" *ngIf="!onEdit">
+    <h3 class="experiencia-titulo">{{experiencia.cargo}}
+        <button mat-icon-button (click)="edit()" *ngIf="loginService.usuario?.token" >
+
+            <mat-icon color="basic" >
+                
+                edit
+            </mat-icon>
+        </button>
+    </h3>
     <p>{{experiencia.empresa}}</p>
 
-    <p class="periodo" *ngIf="experiencia.ano_termino">{{experiencia.mes_inicio}} de {{experiencia.ano_inicio}} - {{experiencia.mes_termino}} de {{experiencia.ano_termino}} </p>
-    <p class="periodo" *ngIf="!experiencia.ano_termino">{{experiencia.mes_inicio}} de {{experiencia.ano_inicio}} - Atual</p>
+    <p class="periodo" *ngIf="experiencia.ano_termino">{{experiencia.mes_inicio}} de {{experiencia.ano_inicio}} -
+        {{experiencia.mes_termino}} de {{experiencia.ano_termino}} </p>
+    <p class="periodo" *ngIf="!experiencia.ano_termino">{{experiencia.mes_inicio}} de {{experiencia.ano_inicio}} - Atual
+    </p>
     <p>{{experiencia.descricao}}</p>
+
+
 </div>
+
+<mat-card class="card" *ngIf="onEdit">
+
+
+    <mat-card-content>
+        <form class="form-flex" [formGroup]="Experiencia" (ngSubmit)="submit()">
+            
+            <mat-form-field class="label form-field">
+                <mat-label class="label">Cargo</mat-label>
+                <input matInput autocomplete="off" placeholder="Cargo" formControlName="cargo">
+                <mat-error *ngIf="Experiencia.controls.cargo.hasError('required')">
+
+                    Cargo é obrigatório
+                </mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field class="label">
+                <mat-label class="label">Empresa</mat-label>
+                <input matInput autocomplete="off" placeholder="Empresa" formControlName="empresa"
+                    (ngM)="experiencia.empresa">
+                <mat-error *ngIf="Experiencia.controls.empresa.hasError('required')">
+
+                    Empresa é obrigatório
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field class="label">
+                <mat-label class="label">Mês de início</mat-label>
+                <input matInput autocomplete="off" placeholder="Mês de início" formControlName="mes_inicio">
+                <mat-error *ngIf="Experiencia.controls.mes_inicio.hasError('required')">
+
+                    Mês de início é obrigatório
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field class="label">
+                <mat-label class="label">Ano início</mat-label>
+                <input matInput autocomplete="off" placeholder="Ano início" formControlName="ano_inicio">
+                <mat-error *ngIf="Experiencia.controls.ano_inicio.hasError('required')">
+
+                    Ano início é obrigatório
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field class="label">
+                <mat-label class="label">Mês de término</mat-label>
+                <input matInput autocomplete="off" placeholder="Mês de término" formControlName="mes_termino">
+                <mat-error *ngIf="Experiencia.controls.mes_termino.hasError('required')">
+
+                    Mês de término é obrigatório
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field class="label">
+                <mat-label class="label">Ano término</mat-label>
+                <input matInput autocomplete="off" placeholder="Ano término" formControlName="ano_termino">
+                <mat-error *ngIf="Experiencia.controls.ano_termino.hasError('required')">
+
+                    Ano término é obrigatório
+                </mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field class="label input-100">
+                <mat-label class="label">Descrição</mat-label>
+                <textarea matInput autocomplete="off" type="text" placeholder="Descrição"
+                    formControlName="descricao"></textarea>
+                <mat-error *ngIf="Experiencia.controls.descricao.hasError('required')">
+
+                    Descrição é obrigatório
+                </mat-error>
+
+            </mat-form-field>
+
+
+            <mat-card-actions>
+                <button type="submit" mat-raised-button color="primary" [class.spinner]="isLoading"
+                    [disabled]="isLoading || !Experiencia.valid">Salvar</button>
+
+                <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+</mat-card>
