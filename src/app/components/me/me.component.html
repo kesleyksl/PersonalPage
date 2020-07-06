@@ -1,9 +1,18 @@
-<div class="main-div">
 
-<div class="descriptions">
+<div class="main-div" *ngIf="!onEdit">
+    
+    <div class="descriptions" >
+        <mat-spinner [strokeWidth]='3' [diameter]="30" *ngIf="usuario.name == ''"   mode="indeterminate"></mat-spinner>
 
     <h1 class="main-title ">
         {{usuario.name}}
+        <button mat-icon-button (click)="edit()" *ngIf="loginService.usuario?.token" >
+
+            <mat-icon color="basic" >
+                
+                edit
+            </mat-icon>
+        </button>
     </h1>
     <p>
         {{usuario.description}}
@@ -20,3 +29,49 @@
 
    
 </div>
+<mat-card class="card"  *ngIf="onEdit">
+    <mat-card-content>
+        <form class="form-flex" [formGroup]="UsuarioEdit" (ngSubmit)="submit()">
+
+
+            
+            <mat-form-field class="label form-field">
+                <mat-label class="label">
+                    Nome
+                </mat-label>
+                <input matInput autocomplete="off" placeholder="Nome" formControlName="name">
+
+                <mat-error *ngIf="UsuarioEdit.controls.name.hasError('required')">
+                    Nome do Usuário é obrigatório
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="label form-field">
+                <mat-label class="label">
+                    Profissão
+                </mat-label>
+                <input matInput autocomplete="off" placeholder="Profissão" formControlName="profession">
+                <mat-error *ngIf="UsuarioEdit.controls.profession.hasError('required')">
+                    Profissão é obrigatório.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="label form-field">
+                <mat-label class="label">
+                    Descrição
+                </mat-label>
+                <textarea matInput autocomplete="off" placeholder="Descrição do perfil" formControlName="description"></textarea>
+                <mat-error *ngIf="UsuarioEdit.controls.description.hasError('required')">
+                    Descrição do perfil é obrigatório.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button type="submit" mat-raised-button color="primary" [class.spinner]="isLoading"
+                    [disabled]="isLoading || !UsuarioEdit.valid">Salvar</button>
+
+                <a mat-raised-button color="warn"  (click)="cancelar()">Cancelar</a>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+</mat-card>

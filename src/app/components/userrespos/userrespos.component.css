@@ -24,7 +24,7 @@
 }
 p{
     margin: 5px 0 5px 10px;
-    font-size: .8em;
+    font-size: 1em;
 }
                 #bio{
                     margin-top: 15px;
@@ -50,11 +50,11 @@ p{
     padding: 5px;
     box-sizing: border-box;
     font-size: 1em;
-    font-size: .5em;
+    font-size: .8em;
     border-radius: 7px;
 }
 .followers p {
-    font-size: .5em;
+    font-size: .8em;
     margin: 10px 0;
 }
 

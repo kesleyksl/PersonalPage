@@ -1,13 +1,13 @@
 .experiencia{
     margin-bottom: 15px;
-    font-size: 12px;
+    font-size: 16px;
 }
 .experiencia p {
     padding-top: 3px;
     padding-bottom: 3px;
 }
 .experiencia-titulo{
-    font-size: 14px;
+    font-size: 18px;
     color: #ffffff;
     font-weight: bolder;
 }
@@ -32,12 +32,3 @@ background-color: #202020;
     display: flex;
     flex-direction: column !important;
 }
-  td {
-    padding-right: 8px;
-  }
-
-  .form{
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }

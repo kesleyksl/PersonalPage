@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ReposService } from 'src/app/services/repos.service';
 import { NavService } from 'src/app/services/nav.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
+import { FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-me',
@@ -13,19 +14,30 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class MeComponent implements OnInit {
 
-  private subject$: Subject<any> = new Subject()
-  public usuario: Usuario = {
-    email: '',
+  private subject$: Subject<any> = new Subject();
+  public onEdit: boolean = false;
+  public isLoading: boolean = false;
 
+
+  public usuario: Usuario = {
+    _id: '',
+    email: '',
     name: '',
     description: '',
     profession: '',
     token: ''
   }
 
-  constructor(private usuarioService: UsuarioService, private navService: NavService) {
-    navService.selectedOption = 'home'
+  UsuarioEdit = this.fb.group({
+    _id:['', [Validators.required]],
+    name:['', [Validators.required]],
+    profession:['', [Validators.required]],
+    description:['', [Validators.required]],
+  })
 
+
+  constructor(private usuarioService: UsuarioService,public loginService: LoginService, private navService: NavService, private fb: FormBuilder) {
+    navService.selectedOption = 'home'
 
 
   }
@@ -34,11 +46,23 @@ export class MeComponent implements OnInit {
     
     this.usuarioService.get()
     .pipe(
-      takeUntil(this.subject$)
+      takeUntil(this.subject$),
+      tap(
+        (users)=>{
+          this.UsuarioEdit.setValue({
+            _id: users[0]._id,
+            name: users[0].name,
+            profession: users[0].profession,
+            description: users[0].description
+        })
+      })
+ 
+      
     )
     .subscribe(
       (users)=>{
         this.usuario = users[0];
+        
       }
     )
   }
@@ -46,4 +70,26 @@ export class MeComponent implements OnInit {
   ngOnDestroy() {
     this.subject$.next();
   }
+
+  submit(){
+    this.isLoading = true;
+    this.usuarioService.update(this.UsuarioEdit.value)
+    .subscribe(
+      (usuario)=>{
+        this.usuario = usuario;
+        this.isLoading = false;
+        this.onEdit = false
+      }
+    )
+  }
+  
+  edit(){
+    this.onEdit = true
+  }
+  
+    cancelar(){
+     
+      this.isLoading = false,
+      this.onEdit = false
+    }
 }
