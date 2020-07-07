@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ExperienciaService } from 'src/app/services/experiencia.service';
 import { Observable, Subject } from 'rxjs';
 import { Experiencia } from 'src/app/models/experiencia';
 import { NavService } from 'src/app/services/nav.service';
 import { takeUntil } from 'rxjs/operators';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-professional',
@@ -15,9 +16,15 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
 
   private subject$: Subject<any> = new Subject()
   public experiencias: Experiencia[] // Observable<Experiencia[]> = this.experienciaService.get();
+  public onAdd: boolean = false
+
+
+
+
   constructor(private experienciaService: ExperienciaService, 
     private navService: NavService,
-    public usuarioService: UsuarioService) { 
+    public usuarioService: UsuarioService,
+    public loginService: LoginService) { 
     navService.selectedOption = 'professional'
   }
 
@@ -44,6 +51,16 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(){
     this.subject$.next();
+  }
+
+  adicionar(){
+
+    this.onAdd = true;
+
+  }
+
+  cancelar(){
+    this.onAdd = false;
   }
 
 }

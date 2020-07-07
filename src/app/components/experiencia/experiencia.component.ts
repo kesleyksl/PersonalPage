@@ -73,9 +73,12 @@ export class ExperienciaComponent implements OnInit {
       }
     )
   }
+
+
   cancelar(){
     this.cancel$.next();
     this.onEdit = false
     this.isLoading = false;
+
   }
 }

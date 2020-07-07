@@ -1,29 +1,9 @@
-<div class="experiencia" *ngIf="!onEdit">
-    <h3 class="experiencia-titulo">{{experiencia.cargo}}
-        <button mat-icon-button (click)="edit()" *ngIf="loginService.usuario?.token" >
 
-            <mat-icon color="basic" >
-                
-                edit
-            </mat-icon>
-        </button>
-    </h3>
-    <p>{{experiencia.empresa}}</p>
-
-    <p class="periodo" *ngIf="experiencia.ano_termino">{{experiencia.mes_inicio}} de {{experiencia.ano_inicio}} -
-        {{experiencia.mes_termino}} de {{experiencia.ano_termino}} </p>
-    <p class="periodo" *ngIf="!experiencia.ano_termino">{{experiencia.mes_inicio}} de {{experiencia.ano_inicio}} - Atual
-    </p>
-    <p>{{experiencia.descricao}}</p>
-
-
-</div>
-
-<mat-card class="card" *ngIf="onEdit">
+<mat-card class="card" >
 
 
     <mat-card-content>
-        <form class="form-flex" [formGroup]="Experiencia" (ngSubmit)="submit()">
+        <form class="form-add-flex" [formGroup]="Experiencia" (ngSubmit)="submit()">
             
             <mat-form-field class="label form-field">
                 <mat-label class="label">Cargo</mat-label>
@@ -37,8 +17,7 @@
 
             <mat-form-field class="label">
                 <mat-label class="label">Empresa</mat-label>
-                <input matInput autocomplete="off" placeholder="Empresa" formControlName="empresa"
-                    (ngM)="experiencia.empresa">
+                <input matInput autocomplete="off" placeholder="Empresa" formControlName="empresa">
                 <mat-error *ngIf="Experiencia.controls.empresa.hasError('required')">
 
                     Empresa é obrigatório
@@ -98,10 +77,7 @@
                 <button type="submit" mat-raised-button color="primary" [class.spinner]="isLoading"
                     [disabled]="isLoading || !Experiencia.valid">Salvar</button>
 
-                <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+                <a mat-raised-button color="warn" (click)="cancelar()">Cancelar</a>
             </mat-card-actions>
         </form>
     </mat-card-content>
-</mat-card>
-
-

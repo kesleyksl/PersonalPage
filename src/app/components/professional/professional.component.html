@@ -1,8 +1,17 @@
-<h1 class="titulo">Experiências</h1>
-<div class="container-experiencias">
+<h1 class="titulo">Experiências         
+    <button mat-icon-button (click)="adicionar()" *ngIf="loginService.usuario?.token" >
+
+    <mat-icon color="primary" >
+        
+        add_circle_outline
+    </mat-icon>
+</button></h1>
+<div class="container-experiencias" *ngIf="!onAdd">
     <mat-spinner [strokeWidth]='3' [diameter]="30" *ngIf="!experiencias"   mode="indeterminate"></mat-spinner>
 
-    <app-experiencia *ngFor="let experiencia of experiencias" [experiencia]="experiencia" (experienciaEdit)="atualizaLista($event)"></app-experiencia>
+    <app-experiencia *ngFor="let experiencia of experiencias" [experiencia]="experiencia"  (experienciaEdit)="atualizaLista($event)"></app-experiencia>
 
 
 </div>
+ 
+<app-experiencia-add  *ngIf="onAdd" (Cancelar)="cancelar() "></app-experiencia-add>
