@@ -53,12 +53,24 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
     this.subject$.next();
   }
 
-  adicionar(){
+  novo(){
 
     this.onAdd = true;
 
   }
+adicionar(experiencia: Experiencia){
+  this.experiencias.unshift(experiencia)
+  this.cancelar();
+}
 
+
+remover(experiencia: Experiencia){
+  let indice = this.experiencias.findIndex(e => e._id = experiencia._id)
+
+    if(indice >= 0 ){
+      this.experiencias.splice(indice, 1);
+    }
+}
   cancelar(){
     this.onAdd = false;
   }

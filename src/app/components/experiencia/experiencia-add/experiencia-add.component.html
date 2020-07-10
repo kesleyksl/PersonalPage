@@ -77,7 +77,7 @@
                 <button type="submit" mat-raised-button color="primary" [class.spinner]="isLoading"
                     [disabled]="isLoading || !Experiencia.valid">Salvar</button>
 
-                <a mat-raised-button color="warn" (click)="cancelar()">Cancelar</a>
+                <button mat-raised-button color="warn" type="cancel" (click)="cancelar()">Cancelar</button>
             </mat-card-actions>
         </form>
     </mat-card-content>

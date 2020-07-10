@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ExperienciaService } from 'src/app/services/experiencia.service';
 
 
 @Component({
@@ -10,6 +11,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class ExperienciaAddComponent implements OnInit {
 
   @Output() Cancelar = new EventEmitter();
+  @Output() Adicionar = new EventEmitter();
+
   public isLoading: boolean = false;
   Experiencia = this.fb.group({
 
@@ -24,12 +27,25 @@ export class ExperienciaAddComponent implements OnInit {
 
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private experienciaService: ExperienciaService) { }
 
   ngOnInit(): void {
   }
+
+
   submit(){
-    this.isLoading = true
+    this.isLoading = true;
+    console.log("chamou")
+    this.experienciaService.adicionar(this.Experiencia.value)
+    .subscribe(
+      experiencia=>{
+        this.Adicionar.emit(experiencia);
+        
+      },
+      erro=>{
+        this.isLoading = false
+      }
+    )
   }
   cancelar(){
     this.isLoading = false;

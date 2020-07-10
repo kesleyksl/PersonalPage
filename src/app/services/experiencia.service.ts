@@ -24,4 +24,16 @@ export class ExperienciaService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'auth': this.loginService.usuario.token })
     })
   }
+
+  adicionar(experiencia: Experiencia): Observable<Experiencia>{
+    return this.http.post<Experiencia>(`${this.baseUrl}/experiencia`, experiencia, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'auth': this.loginService.usuario.token })
+    })
+  }
+
+  deletar(experiencia: Experiencia): Observable<any>{
+    return this.http.delete<any>(`${this.baseUrl}/experiencia/${experiencia._id}`,  {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'auth': this.loginService.usuario.token })
+    });
+  }
 }

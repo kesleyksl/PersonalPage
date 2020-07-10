@@ -18,6 +18,8 @@ export class ExperienciaComponent implements OnInit {
 
   @Output() experienciaEdit = new EventEmitter();
 
+  @Output() removido = new EventEmitter();
+
   private cancel$: Subject<any> = new Subject()
   public onEdit: boolean = false;
 
@@ -80,5 +82,17 @@ export class ExperienciaComponent implements OnInit {
     this.onEdit = false
     this.isLoading = false;
 
+  }
+
+    
+  remover(){
+
+    const _id = this.experiencia._id;
+    this.experienciaService.deletar(this.experiencia)
+    .subscribe(
+      ()=>{
+        this.removido.emit(this.experiencia)
+      }
+    )
   }
 }

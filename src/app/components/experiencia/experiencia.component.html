@@ -7,6 +7,15 @@
                 edit
             </mat-icon>
         </button>
+
+        <button mat-icon-button (click)="remover()"  *ngIf="loginService.usuario?.token" >
+
+            <mat-icon color="warn" >
+                
+                delete_outline
+
+            </mat-icon>
+        </button>
     </h3>
     <p>{{experiencia.empresa}}</p>
 
