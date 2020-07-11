@@ -36,6 +36,7 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
     .subscribe(
       (experiencias)=>{
         this.experiencias = experiencias;
+ 
       }
     )
   }
@@ -43,7 +44,7 @@ export class ProfessionalComponent implements OnInit, OnDestroy {
 
 
     
-    let indice = this.experiencias.findIndex(e => e._id = experiencia._id)
+    let indice = this.experiencias.findIndex(e => e._id == experiencia._id)
 
     if(indice >= 0 ){
       this.experiencias[indice]= experiencia;
@@ -65,7 +66,7 @@ adicionar(experiencia: Experiencia){
 
 
 remover(experiencia: Experiencia){
-  let indice = this.experiencias.findIndex(e => e._id = experiencia._id)
+  let indice = this.experiencias.findIndex(e => e._id == experiencia._id)
 
     if(indice >= 0 ){
       this.experiencias.splice(indice, 1);

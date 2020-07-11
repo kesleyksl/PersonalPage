@@ -35,7 +35,7 @@ export class ExperienciaAddComponent implements OnInit {
 
   submit(){
     this.isLoading = true;
-    console.log("chamou")
+
     this.experienciaService.adicionar(this.Experiencia.value)
     .subscribe(
       experiencia=>{

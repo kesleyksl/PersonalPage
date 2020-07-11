@@ -18,6 +18,7 @@ import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExperienciaAddComponent } from './components/experiencia/experiencia-add/experiencia-add.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ExperienciaAddComponent } from './components/experiencia/experiencia-ad
     ProfessionalComponent,
     ExperienciaComponent,
     LoginComponent,
-    ExperienciaAddComponent
+    ExperienciaAddComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

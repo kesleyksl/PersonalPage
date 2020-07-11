@@ -5,6 +5,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ExperienciaService } from 'src/app/services/experiencia.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 
 @Component({
@@ -19,6 +21,9 @@ export class ExperienciaComponent implements OnInit {
   @Output() experienciaEdit = new EventEmitter();
 
   @Output() removido = new EventEmitter();
+
+
+  private subject$ = new Subject<any>();
 
   private cancel$: Subject<any> = new Subject()
   public onEdit: boolean = false;
@@ -43,7 +48,8 @@ export class ExperienciaComponent implements OnInit {
   constructor(
     public loginService: LoginService,
     private fb: FormBuilder,
-    private experienciaService: ExperienciaService) { }
+    private experienciaService: ExperienciaService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.Experiencia.setValue({cargo: this.experiencia.cargo,
@@ -84,15 +90,36 @@ export class ExperienciaComponent implements OnInit {
 
   }
 
-    
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '50%',
+      data: this.experiencia
+    });
+
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.subject$)
+    ).subscribe(result => {
+
+      if(result){
+        this.removido.emit(result)
+        this.remover();
+      }
+    });
+  }
+
   remover(){
 
-    const _id = this.experiencia._id;
+
     this.experienciaService.deletar(this.experiencia)
     .subscribe(
       ()=>{
-        this.removido.emit(this.experiencia)
+
       }
     )
+  }
+
+  ngOnDestroy(){
+    this.subject$.next();
   }
 }
