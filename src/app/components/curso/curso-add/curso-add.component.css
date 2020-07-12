@@ -1,0 +1,63 @@
+
+
+.periodo{
+    color: #999999;
+}
+
+textarea{
+    height: 80px;
+}
+
+.card{
+
+background-color: #202020;
+margin-bottom: 45px;
+
+}
+.label{
+    margin-right: 20px;
+}
+.form-flex-edit{
+    display: flex;
+    flex-direction: column !important;
+}
+.radio{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+    margin-bottom: 15px;
+
+}
+
+.select{
+    background-color: #303030;
+    color: #c0c0c0;
+
+}
+.select:hover{
+    background-color: #202020;
+   
+}
+
+
+  
+  .mat-option.mat-selected {
+    background: #101010 !important;
+  }
+.form-field{
+    width: 100% !important;
+}
+
+.radio mat-radio-button{
+    margin-bottom: 15px;
+}
+@media (max-width: 650px){
+    .radio{
+
+        flex-direction: column;
+
+    }
+    
+}

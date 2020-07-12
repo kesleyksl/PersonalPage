@@ -93,7 +93,7 @@ export class ExperienciaComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '50%',
+      width: '80%',
       data: this.experiencia
     });
 

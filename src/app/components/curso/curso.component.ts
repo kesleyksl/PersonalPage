@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Curso } from 'src/app/models/curso';
 
 @Component({
@@ -9,10 +9,27 @@ import { Curso } from 'src/app/models/curso';
 export class CursoComponent implements OnInit {
 
   @Input() curso: Curso
+
+  @Output() cursoAtualizado = new EventEmitter()
+
+  public onEdit: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
 
   }
+  edit(){
+    this.onEdit = true
+  }
+  openDialog(){
 
+  }
+  atualiza(curso: Curso){
+    this.curso = curso
+    this.onEdit = false
+    this.cursoAtualizado.emit(curso)
+  }
+  cancel(){
+    this.onEdit = false;
+  }
 }

@@ -16,8 +16,17 @@ export class SchoolComponent implements OnInit {
   // public cursos: Observable<Curso[]> = this.cursoService.get();
 
   private subject$: Subject<any> = new Subject()
-
-  public cursos: Curso[]
+  public onAdd: boolean = false
+  public cursos: Curso[];
+  public novoCurso: Curso = {
+    nome: '',
+    instituicao: '',
+    status: '',
+    tipo_curso: '',
+    _id: '',
+    ano_conclusao: '',
+    mes_conclusao:''
+  }
   constructor(private cursoService: CursoService, private navService: NavService) {
     navService.selectedOption = 'school'
    }
@@ -38,4 +47,19 @@ export class SchoolComponent implements OnInit {
     this.subject$.next();
   }
 
+ novo(){
+   this.onAdd = true
+ }
+
+ cancelar(){
+   this.onAdd = false
+ }
+
+  atualiza(curso: Curso){
+    let index = this.cursos.findIndex(c => c._id == curso._id )
+
+    if(index >= 0){
+      this.cursos[index] = curso
+    }
+  }
 }

@@ -19,6 +19,11 @@ width: 60vw;
 
 }
 
+mat-divider{
+    border-top-color: #606060;
+    margin-bottom:  30px;
+}
+
 @media (max-width: 600px){
     .container-cursos{
         padding-bottom: 50px;

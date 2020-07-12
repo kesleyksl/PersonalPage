@@ -6,9 +6,9 @@
 
     <h1 class="main-title ">
         {{usuario.name}}
-        <button mat-icon-button (click)="edit()" *ngIf="loginService.usuario?.token && usuario.name !==''" >
+        <button mat-mini-fab color="primary" (click)="edit()"  *ngIf="loginService.usuario?.token && usuario.name !==''" >
 
-            <mat-icon color="basic" >
+            <mat-icon  >
                 
                 edit
             </mat-icon>

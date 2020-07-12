@@ -19,6 +19,8 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExperienciaAddComponent } from './components/experiencia/experiencia-add/experiencia-add.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { DialogCursoComponent } from './components/curso/dialog-curso/dialog-curso.component';
+import { CursoAddComponent } from './components/curso/curso-add/curso-add.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { DialogComponent } from './components/dialog/dialog.component';
     ExperienciaComponent,
     LoginComponent,
     ExperienciaAddComponent,
-    DialogComponent
+    DialogComponent,
+    DialogCursoComponent,
+    CursoAddComponent
   ],
   imports: [
     BrowserModule,

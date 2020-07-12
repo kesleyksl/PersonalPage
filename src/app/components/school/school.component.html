@@ -1,8 +1,21 @@
-<h1 class="titulo">Formação Acadêmica e Complementar</h1>
+<h1 class="titulo">Formação Acadêmica e Complementar
 
+    <button mat-mini-fab color="primary" (click)="novo()"  >
 
+        <mat-icon >
+            
+            add_circle_outline
+        </mat-icon>
+    </button>
 
-<div class="container-cursos" >
+</h1>
+
+<div class="container-cursos" *ngIf="onAdd" >
+    <app-curso-add (cancelarEmiter)="cancelar()" [criacao]="true" [cursoNovo]="novoCurso"></app-curso-add>
+
+</div>
+
+<div class="container-cursos" *ngIf="!onAdd" >
     <h3 class="titulo-curso">Graduação</h3>
     
     <mat-spinner [strokeWidth]='3' [diameter]="30"  *ngIf="!cursos" mode="indeterminate">Carregando</mat-spinner>
@@ -11,7 +24,8 @@
         
     <ng-container *ngIf="curso.tipo_curso == 'Graduação'">
         
-        <app-curso class="course" [curso]="curso"></app-curso>
+        <app-curso class="course" [curso]="curso" (cursoAtualizado)="atualiza($event)"></app-curso>
+        <mat-divider color="primary"></mat-divider>
     </ng-container>
     
     
@@ -26,7 +40,8 @@
     
     <ng-container *ngIf="curso.tipo_curso == 'Ensino Médio Profissionalizante'">
         
-        <app-curso class="course" [curso]="curso"></app-curso>
+        <app-curso class="course" [curso]="curso"  (cursoAtualizado)="atualiza($event)"></app-curso>
+        <mat-divider color="primary"></mat-divider>
     </ng-container>
     
 </div>
@@ -39,9 +54,12 @@
     
     <ng-container *ngIf="curso.tipo_curso == 'Cursos Complementares'">
         
-        <app-curso class="course" [curso]="curso"></app-curso>
+        <app-curso class="course" [curso]="curso" (cursoAtualizado)="atualiza($event)"></app-curso>
+        <mat-divider color="primary"></mat-divider>
     </ng-container>
     
 </div>
+
+
 
 </div>

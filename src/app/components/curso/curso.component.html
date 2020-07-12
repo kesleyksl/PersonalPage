@@ -1,7 +1,34 @@
-<div class="course">
-    <p>{{curso.nome}}, {{curso.instituicao}}</p>
+<div class="course" *ngIf="!onEdit">
+
+    <p class="">
+        
+        <button mat-icon-button (click)="edit()">
+               
+            <mat-icon color="basic">
+                
+                edit
+             </mat-icon>
+         </button>
+         
+         <button mat-icon-button (click)="openDialog()">
+             
+             <mat-icon color="warn">
+                 
+                 delete_outline
+                 
+             </mat-icon>
+         </button>
+        {{curso.nome}}, {{curso.instituicao}}
+       
+
+ 
+
+    </p>
 
     <p *ngIf="curso.ano_conclusao">({{curso.mes_conclusao}} de {{curso.ano_conclusao}}) - {{curso.status}}</p>
     <p *ngIf="!curso.ano_conclusao">{{curso.status}}</p>
-    
+
 </div>
+
+<app-curso-add  *ngIf="onEdit" (cancelarEmiter)="cancel()" (cursoSalvo)="atualiza($event)"  [cursoNovo]="curso"></app-curso-add>
+
