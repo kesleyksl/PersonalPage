@@ -101,7 +101,7 @@ export class ExperienciaComponent implements OnInit {
       takeUntil(this.subject$)
     ).subscribe(result => {
 
-      if(result){
+      if(result){ 
         this.removido.emit(result)
         this.remover();
       }

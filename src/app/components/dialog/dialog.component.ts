@@ -19,5 +19,5 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-
+  
 }

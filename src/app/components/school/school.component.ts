@@ -5,6 +5,7 @@ import { Curso } from 'src/app/models/curso';
 import { NavService } from 'src/app/services/nav.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-school',
@@ -27,7 +28,7 @@ export class SchoolComponent implements OnInit {
     ano_conclusao: '',
     mes_conclusao:''
   }
-  constructor(private cursoService: CursoService, private navService: NavService) {
+  constructor(private cursoService: CursoService, private navService: NavService, public loginService: LoginService) {
     navService.selectedOption = 'school'
    }
 
@@ -61,5 +62,19 @@ export class SchoolComponent implements OnInit {
     if(index >= 0){
       this.cursos[index] = curso
     }
+  }
+
+  deletar(curso: Curso){
+    let index = this.cursos.findIndex(c => c._id == curso._id )
+
+if(index >= 0){
+  this.cursos.splice(index, 1)
+}
+  }
+
+
+  adicionarCurso(curso: Curso){
+    this.cursos.unshift(curso);
+    this.onAdd = false
   }
 }

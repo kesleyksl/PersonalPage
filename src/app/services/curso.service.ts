@@ -21,4 +21,16 @@ export class CursoService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'auth': this.loginService.usuario.token })
     })
   }
+
+  novo(curso: Curso): Observable<Curso>{
+    curso._id = undefined
+    return this.http.post<Curso>(`${this.baseUrl}/curso`, curso,  {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'auth': this.loginService.usuario.token })
+    })
+  }
+  delete(curso: Curso): Observable<Curso>{
+    return this.http.delete<Curso>(`${this.baseUrl}/curso/${curso._id}`,  {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'auth': this.loginService.usuario.token })
+    })
+  }
 }

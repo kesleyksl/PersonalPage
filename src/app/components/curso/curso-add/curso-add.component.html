@@ -54,13 +54,13 @@
 
 <div>
 
-    <mat-form-field class="label "  *ngIf="Curso.value.status == 'Concluído'">
+    <mat-form-field class="label ">
         <mat-label class="label">Mes de conlusão</mat-label>
         <input matInput placeholder="Ex: Janeiro" autocomplete="off" formControlName="mes_conclusao">
     </mat-form-field>
     
     
-    <mat-form-field class="label"  *ngIf="Curso.value.status == 'Concluído'">
+    <mat-form-field class="label">
         <mat-label class="label">Ano de conlusão</mat-label>
         <input matInput placeholder="Ex: 2020" autocomplete="off" formControlName="ano_conclusao">
     </mat-form-field>

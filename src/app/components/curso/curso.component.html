@@ -1,23 +1,25 @@
 <div class="course" *ngIf="!onEdit">
 
     <p class="">
-        
-        <button mat-icon-button (click)="edit()">
-               
-            <mat-icon color="basic">
+        <span   *ngIf="loginService.usuario?.token" >
+
+            <button mat-icon-button (click)="edit()" >
                 
-                edit
-             </mat-icon>
-         </button>
-         
-         <button mat-icon-button (click)="openDialog()">
-             
-             <mat-icon color="warn">
-                 
-                 delete_outline
-                 
-             </mat-icon>
-         </button>
+                <mat-icon color="basic">
+                    
+                    edit
+                </mat-icon>
+            </button>
+            
+            <button mat-icon-button (click)="openDialog()">
+                
+                <mat-icon color="warn">
+                    
+                    delete_outline
+                    
+                </mat-icon>
+            </button>
+        </span>
         {{curso.nome}}, {{curso.instituicao}}
        
 
@@ -30,5 +32,5 @@
 
 </div>
 
-<app-curso-add  *ngIf="onEdit" (cancelarEmiter)="cancel()" (cursoSalvo)="atualiza($event)"  [cursoNovo]="curso"></app-curso-add>
+<app-curso-add  *ngIf="onEdit" (cancelarEmiter)="cancel()" (cursoSalvo)="atualiza($event)" [cursoNovo]="curso"></app-curso-add>
 

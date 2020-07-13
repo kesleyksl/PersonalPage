@@ -17,7 +17,7 @@ export class CursoAddComponent implements OnInit {
   @Output() cursoSalvo = new EventEmitter();
 
   @Output() cancelarEmiter = new EventEmitter();
-
+@Output() cursoCriado = new EventEmitter();
   @Input() criacao: boolean
 
   Curso = this.fb.group({
@@ -56,7 +56,16 @@ export class CursoAddComponent implements OnInit {
   submit() {
 
     this.isLoading = true;
+
+    console.log(this.criacao)
     if(this.criacao){
+      this.cursoService.novo(this.Curso.value)
+
+      .subscribe(
+        (curso)=>{
+          this.cursoCriado.emit(curso);
+        }
+      )
 
     }
     else{
