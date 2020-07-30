@@ -20,22 +20,16 @@ export class GithubComponent implements OnInit {
 
 
   public repositorios: Observable<Repositorios[]>
+  
 
   constructor(private reposService: ReposService, private navService: NavService) {
 
     navService.selectedOption = 'github'
     // this.user = this.reposService.getUser('kesleyksl')
-    this.reposService.getUser('kesleyksl')
-      .pipe(
-        takeUntil(this.unsubscribe$))
-      .subscribe(
-        (user) => {
+    this.user = this.reposService.getUser('kesleyksl')
 
 
-          this.userRepos = user;
-        },
-
-      )
+      
 
       this.repositorios = this.reposService.getRepos('kesleyksl');
       

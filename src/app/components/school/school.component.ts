@@ -3,7 +3,7 @@ import { CursoService } from 'src/app/services/curso.service';
 import { Curso } from 'src/app/models/curso';
 
 import { NavService } from 'src/app/services/nav.service';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -14,11 +14,11 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class SchoolComponent implements OnInit {
 
-  // public cursos: Observable<Curso[]> = this.cursoService.get();
+  public cursos: Observable<Curso[]>
 
   private subject$: Subject<any> = new Subject()
   public onAdd: boolean = false
-  public cursos: Curso[];
+  // public cursos: Curso[];
   public novoCurso: Curso = {
     nome: '',
     instituicao: '',
@@ -26,55 +26,33 @@ export class SchoolComponent implements OnInit {
     tipo_curso: '',
     _id: '',
     ano_conclusao: '',
-    mes_conclusao:''
+    mes_conclusao: ''
   }
-  constructor(private cursoService: CursoService, private navService: NavService, public loginService: LoginService) {
+  constructor(public cursoService: CursoService, private navService: NavService, public loginService: LoginService) {
     navService.selectedOption = 'school'
-   }
+  }
 
   ngOnInit(): void {
-    this.cursoService.get()
-    .pipe(
-      takeUntil(this.subject$)
-    )
-    .subscribe(
-      (cursos)=> this.cursos = cursos
-      
-    )
+    this.cursos = this.cursoService.get();
+    
 
   }
 
-  ngOndestroy(){
+  ngOndestroy() {
     this.subject$.next();
   }
 
- novo(){
-   this.onAdd = true
- }
-
- cancelar(){
-   this.onAdd = false
- }
-
-  atualiza(curso: Curso){
-    let index = this.cursos.findIndex(c => c._id == curso._id )
-
-    if(index >= 0){
-      this.cursos[index] = curso
-    }
+  novo() {
+    this.onAdd = true
   }
 
-  deletar(curso: Curso){
-    let index = this.cursos.findIndex(c => c._id == curso._id )
-
-if(index >= 0){
-  this.cursos.splice(index, 1)
-}
+  cancelar() {
+    this.onAdd = false
   }
 
 
-  adicionarCurso(curso: Curso){
-    this.cursos.unshift(curso);
+  adicionarCurso(curso: Curso) {
+
     this.onAdd = false
   }
 }

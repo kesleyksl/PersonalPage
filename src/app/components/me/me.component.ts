@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavService } from 'src/app/services/nav.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
@@ -17,7 +17,7 @@ export class MeComponent implements OnInit {
   private subject$: Subject<any> = new Subject();
   public onEdit: boolean = false;
   public isLoading: boolean = false;
-
+  public user$: Observable<Usuario>
 
   public usuario: Usuario = {
     _id: '',
@@ -36,7 +36,7 @@ export class MeComponent implements OnInit {
   })
 
 
-  constructor(private usuarioService: UsuarioService,public loginService: LoginService, private navService: NavService, private fb: FormBuilder) {
+  constructor(public usuarioService: UsuarioService,public loginService: LoginService, private navService: NavService, private fb: FormBuilder) {
     navService.selectedOption = 'home'
 
 
@@ -44,27 +44,10 @@ export class MeComponent implements OnInit {
 
    ngOnInit(): void {
     
-    this.usuarioService.get()
-    .pipe(
-      takeUntil(this.subject$),
-      tap(
-        (users)=>{
-          this.UsuarioEdit.setValue({
-            _id: users[0]._id,
-            name: users[0].name,
-            profession: users[0].profession,
-            description: users[0].description
-        })
-      })
- 
+    this.user$ = this.usuarioService.get()
+    
       
-    )
-    .subscribe(
-      (users)=>{
-        this.usuario = users[0];
-        
-      }
-    )
+   
   }
 
   ngOnDestroy() {

@@ -18,13 +18,13 @@
 <div class="container-cursos" *ngIf="!onAdd" >
     <h3 class="titulo-curso">Graduação</h3>
     
-    <mat-spinner [strokeWidth]='3' [diameter]="30"  *ngIf="!cursos" mode="indeterminate">Carregando</mat-spinner>
+    <mat-spinner [strokeWidth]='3' [diameter]="30"  *ngIf="!cursoService.cursoLoaded" mode="indeterminate">Carregando</mat-spinner>
 
-    <div *ngFor="let curso of cursos">
+    <div *ngFor="let curso of cursos | async">
         
     <ng-container *ngIf="curso.tipo_curso == 'Graduação'">
         
-        <app-curso class="course" [curso]="curso" (cursoAtualizado)="atualiza($event)" (cursoDeletado)="deletar($event)"></app-curso>
+        <app-curso class="course" [curso]="curso" ></app-curso>
         <mat-divider color="primary"></mat-divider>
     </ng-container>
     
@@ -32,15 +32,15 @@
 </div>
 
 <h3 class="titulo-curso">Ensino Médio Profissionalizante</h3>
-<mat-spinner [strokeWidth]='3' [diameter]="30" *ngIf="!cursos" mode="indeterminate"></mat-spinner>
+<mat-spinner [strokeWidth]='3' [diameter]="30"   *ngIf="!cursoService.cursoLoaded" mode="indeterminate"></mat-spinner>
 
 
-<div style="margin-bottom: 15px;"  *ngFor="let curso of cursos">
+<div style="margin-bottom: 15px;"  *ngFor="let curso of cursos | async">
     
     
     <ng-container *ngIf="curso.tipo_curso == 'Ensino Médio Profissionalizante'">
         
-        <app-curso class="course" [curso]="curso"  (cursoAtualizado)="atualiza($event)" (cursoDeletado)="deletar($event)"></app-curso>
+        <app-curso class="course" [curso]="curso" ></app-curso>
         <mat-divider color="primary"></mat-divider>
     </ng-container>
     
@@ -48,13 +48,13 @@
 
 
 <h3 class="titulo-curso">Cursos Complementares</h3>
-<mat-spinner [strokeWidth]='3' [diameter]="30" *ngIf="!cursos" mode="indeterminate"></mat-spinner>
+<mat-spinner [strokeWidth]='3' [diameter]="30"   *ngIf="!cursoService.cursoLoaded" mode="indeterminate"></mat-spinner>
 
-<div  *ngFor="let curso of cursos">
+<div  *ngFor="let curso of cursos | async">
     
     <ng-container *ngIf="curso.tipo_curso == 'Cursos Complementares'">
         
-        <app-curso class="course" [curso]="curso" (cursoAtualizado)="atualiza($event)" (cursoDeletado)="deletar($event)"></app-curso>
+        <app-curso class="course" [curso]="curso" ></app-curso>
         <mat-divider color="primary"></mat-divider>
     </ng-container>
     

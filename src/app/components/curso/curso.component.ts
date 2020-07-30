@@ -16,9 +16,6 @@ export class CursoComponent implements OnInit {
 
   @Input() curso: Curso
 
-  @Output() cursoAtualizado = new EventEmitter()
-
-  @Output() cursoDeletado = new EventEmitter()
   public subject$ = new Subject()
   public onEdit: boolean = false;
 
@@ -45,7 +42,7 @@ export class CursoComponent implements OnInit {
 
       if(result){
 
-        this.cursoDeletado.emit(result)
+ 
         this.remover(result);
       }
     });
@@ -55,7 +52,9 @@ export class CursoComponent implements OnInit {
 
 
     this.cursoService.delete(this.curso)
-    .subscribe(
+    .pipe(
+      takeUntil(this.subject$)
+    ).subscribe(
       ()=>{
 
       }
@@ -66,7 +65,7 @@ export class CursoComponent implements OnInit {
   atualiza(curso: Curso){
     this.curso = curso
     this.onEdit = false
-    this.cursoAtualizado.emit(curso)
+
   }
 
   

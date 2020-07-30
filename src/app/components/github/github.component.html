@@ -1,7 +1,7 @@
 <div class="main-github">
 
     <div class="user-repos">
-        <app-userrespos [userRepos]="userRepos"></app-userrespos>
+        <app-userrespos [userRepos]="(user | async)"></app-userrespos>
         
     </div>
     

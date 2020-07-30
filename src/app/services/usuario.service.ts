@@ -3,21 +3,36 @@ import { environment } from '../../environments/environment'
 import { Usuario } from '../models/usuario';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { LoginService } from './login.service';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  private readonly baseUrl: string = environment.baseUrl
+  private readonly baseUrl: string = environment.baseUrl;
+  private user$: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>(null);
+  private userLoaded: boolean = false
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
-  get(): Observable<Usuario[]> {
+  get(): Observable<Usuario> {
+
+    if (!this.userLoaded) {
+
+      this.http.get<Usuario[]>(this.baseUrl + '/usuario')
+        .subscribe(
+          (users) => {
+            this.user$.next(users[0]);
+            this.userLoaded = true;
+            return this.user$.asObservable();
+          }
+        )
+        
+    }
 
 
-    return this.http.get<Usuario[]>(this.baseUrl + '/usuario');
-
+    return this.user$.asObservable();
 
   }
 

@@ -2,10 +2,10 @@
 <div class="main-div" *ngIf="!onEdit">
     
     <div class="descriptions" >
-        <mat-spinner [strokeWidth]='3' [diameter]="30" *ngIf="usuario.name == ''"   mode="indeterminate"></mat-spinner>
+        <mat-spinner [strokeWidth]='3' [diameter]="30" *ngIf="!(user$ | async)"   mode="indeterminate"></mat-spinner>
 
     <h1 class="main-title ">
-        {{usuario.name}}
+        {{(user$ | async)?.name}}
         <button mat-mini-fab color="primary" (click)="edit()"  *ngIf="loginService.usuario?.token && usuario.name !==''" >
 
             <mat-icon  >
@@ -15,7 +15,7 @@
         </button>
     </h1>
     <p>
-        {{usuario.description}}
+        {{(user$ | async)?.description}}
     </p>
 </div>
 
@@ -24,7 +24,7 @@
 
 
     <div class="developer">
-        <p>{{usuario.profession}}</p>  
+        <p>{{(user$ | async)?.profession}}</p>  
     </div>
 
    
